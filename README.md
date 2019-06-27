@@ -5,7 +5,7 @@
 [![Hex license](https://img.shields.io/hexpm/l/soap.svg?style=flat)](https://hex.pm/packages/soap)
 [![Hex downloads](https://img.shields.io/hexpm/dt/soap.svg?style=flat)](https://hex.pm/packages/soap)
 
-SOAP client for Elixir programming language
+SOAP client for Elixir programming language (For IndusInd)
 
 ## Installation
 
@@ -111,3 +111,4 @@ You can find a list of features and bugs in the [issue tracker](https://github.c
 ## License
 
 Soap is released under the MIT license, see the [LICENSE](https://github.com/elixir-soap/soap/blob/master/LICENSE) file.
+
