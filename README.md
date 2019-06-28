@@ -5,7 +5,7 @@
 [![Hex license](https://img.shields.io/hexpm/l/soap.svg?style=flat)](https://hex.pm/packages/soap)
 [![Hex downloads](https://img.shields.io/hexpm/dt/soap.svg?style=flat)](https://hex.pm/packages/soap)
 
-SOAP client for Elixir programming language (MIRS)
+SOAP client for Elixir programming language
 
 ## Installation
 
@@ -28,7 +28,13 @@ end
 
 Configure version of SOAP protocol. Supported versions `1.1`(default) and `1.2`.
 ```elixir
-config :soap, :globals, version: "1.1"
+config :soap, :globals, 
+        version: "1.1",
+        ignore_schema_attribute: "yes", # yes or no
+        special_operation_tag: "xxx:",
+        custom_namespaces: %{"xmlns:tem" => "http://tempuri.org/"},
+        additional_headers: [{"more_header1","value1"}
+                             {"more_header2","value2"}]
 ```
 
 ## Usage
