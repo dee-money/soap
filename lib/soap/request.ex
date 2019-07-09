@@ -14,6 +14,18 @@ defmodule Soap.Request do
   def call(wsdl, operation, {soap_headers, params}, request_headers, opts) do
     url = get_url(wsdl)
     request_headers = Headers.build(wsdl, operation, request_headers)
+
+    params =
+     case Application.fetch_env!(:soap, :globals)[:additional_credential] do
+      nil -> params
+      _ ->
+        params
+        |> Map.from_struct
+        |> Map.to_list
+        |> List.insert_at(-1, Application.fetch_env!(:soap, :globals)[:additional_credential])
+        |> List.flatten
+    end
+
     body = Params.build_body(wsdl, operation, params, soap_headers)
 
     HTTPoison.post(url, body, request_headers, opts)
