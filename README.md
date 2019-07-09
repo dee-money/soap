@@ -34,6 +34,7 @@ config :soap, :globals,
         allow_soap_action_null: false, # true or false
         special_operation_tag: "xxx:",
         custom_namespaces: %{"xmlns:tem" => "http://tempuri.org/"},
+	additional_credential: [{"attr1", "value1"}, {"attr2", "value2"}],
         additional_headers: [{"more_header1","value1"}
                              {"more_header2","value2"}]
 ```
