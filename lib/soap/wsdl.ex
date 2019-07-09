@@ -131,8 +131,17 @@ defmodule Soap.Wsdl do
   defp get_full_paths(wsdl, path, protocol_ns, schema_namespace) do
     wsdl
     |> get_schema_imports(protocol_ns, schema_namespace)
-    |> Enum.map(&(path |> Path.dirname() |> Path.join(&1.schema_location)))
+    #|> Enum.map(&(path |> Path.dirname() |> Path.join(&1.schema_location)))
+    |> Enum.map(&(&1.schema_location))
   end
+
+  #defp check_path(path, schema_location) do
+  #     regexp = ~r/https?:\/\/[-a-zA-Z0-9@:%_\+.~#?&\/\/=]*/
+  #     case Regex.run(regexp, schema_location) do
+  #	     nil -> 
+  #          _ ->
+  #	end
+  #end
 
   @spec get_imported_types(list()) :: list(map())
   defp get_imported_types(xsd_paths) do
