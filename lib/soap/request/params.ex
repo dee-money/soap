@@ -182,7 +182,7 @@ defmodule Soap.Request.Params do
   defp construct_xml_request_header(params) when is_binary(params), do: params
 
   @spec insert_tag_parameters(params :: list()) :: list()
-  defp insert_tag_parameters(params) when is_list(params), do: params |> List.insert_at(1, nil)
+  defp insert_tag_parameters(params) when is_list(params), do: params |> List.insert_at(1, nil) |> List.update_at(0, &(Application.fetch_env!(:soap, :globals)[:special_operation_tag] <> &1))
 
   @spec add_action_tag_wrapper(list(), map(), String.t()) :: list()
   defp add_action_tag_wrapper(body, wsdl, operation) do
