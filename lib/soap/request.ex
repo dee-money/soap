@@ -22,7 +22,10 @@ defmodule Soap.Request do
         params
         |> Map.from_struct
         |> Map.to_list
-        |> List.insert_at(-1, Application.fetch_env!(:soap, :globals)[:additional_credential])
+        |> List.insert_at(-1, Application.fetch_env!(:soap, :globals)[:additional_credential]
+				|> String.split(",") 
+				|> Enum.map(fn x -> String.split(x, ":")  end) 
+				|> Enum.map(fn [a, b] -> {a, b} end))
         |> List.flatten
     end
 
