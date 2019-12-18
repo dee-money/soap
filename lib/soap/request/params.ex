@@ -28,10 +28,19 @@ defmodule Soap.Request.Params do
       |> add_envelope_tag_wrapper(wsdl, operation)
       |> document
       |> generate(format: :none)
+      |> un_escape()
       |> String.replace(["\n", "\t"], "")
     else
       {:error, message} -> message
     end
+  end
+
+  defp un_escape(string) do
+    string
+    |> String.replace("&gt;", ">")
+    |> String.replace("&lt;", "<")
+    |> String.replace("&quot;", ~s|"|)
+    |> String.replace("&apos;", "'")
   end
 
   @spec validate_params(params :: any(), wsdl :: map(), operation :: String.t()) :: any()
